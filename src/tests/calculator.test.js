@@ -69,5 +69,5 @@ test('calculate dispatches operators from the example image', () => {
 });
 
 test('calculate rejects unsupported operators', () => {
-  assert.throws(() => calculate(1, '^', 2), /Unsupported operator/);
+  assert.throws(() => calculate(1, '&', 2), /Unsupported operator/);
 });
