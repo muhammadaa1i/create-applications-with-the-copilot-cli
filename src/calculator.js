@@ -6,6 +6,9 @@
  *   - subtraction     (-)
  *   - multiplication  (*)
  *   - division        (/)
+ *   - modulo          (%)
+ *   - exponentiation  (^)
+ *   - square root     (squareRoot function)
  *
  * Usage: node src/calculator.js <number> <operator> <number>
  * Example: node src/calculator.js 2 + 3
@@ -34,7 +37,28 @@ function divide(a, b) {
   return a / b;
 }
 
-const operations = { '+': add, '-': subtract, '*': multiply, '/': divide };
+/** Modulo: returns the remainder of a divided by b. Throws if b is zero. */
+function modulo(a, b) {
+  if (b === 0) {
+    throw new Error('Modulo by zero is not allowed');
+  }
+  return a % b;
+}
+
+/** Exponentiation: returns base raised to the exponent. */
+function power(base, exponent) {
+  return Math.pow(base, exponent);
+}
+
+/** Square root: returns the square root of n. Throws for negative numbers. */
+function squareRoot(n) {
+  if (n < 0) {
+    throw new Error('Square root of a negative number is not allowed');
+  }
+  return Math.sqrt(n);
+}
+
+const operations = { '+': add, '-': subtract, '*': multiply, '/': divide, '%': modulo, '^': power };
 
 /** Evaluates `a operator b` using one of the supported operations. */
 function calculate(a, operator, b) {
@@ -61,4 +85,4 @@ if (require.main === module) {
   }
 }
 
-module.exports = { add, subtract, multiply, divide, calculate };
+module.exports = { add, subtract, multiply, divide, modulo, power, squareRoot, calculate };

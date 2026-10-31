@@ -1,6 +1,39 @@
 const test = require('node:test');
 const assert = require('node:assert/strict');
-const { add, subtract, multiply, divide, calculate } = require('../calculator');
+const {
+  add, subtract, multiply, divide, modulo, power, squareRoot, calculate,
+} = require('../calculator');
+
+test('modulo', () => {
+  assert.equal(modulo(5, 2), 1);
+  assert.equal(modulo(10, 5), 0);
+  assert.equal(modulo(-5, 3), -2);
+});
+
+test('modulo by zero throws', () => {
+  assert.throws(() => modulo(5, 0), /Modulo by zero/);
+});
+
+test('power', () => {
+  assert.equal(power(2, 3), 8);
+  assert.equal(power(5, 0), 1);
+  assert.equal(power(2, -1), 0.5);
+});
+
+test('square root', () => {
+  assert.equal(squareRoot(16), 4);
+  assert.equal(squareRoot(0), 0);
+  assert.equal(squareRoot(2.25), 1.5);
+});
+
+test('square root of a negative number throws', () => {
+  assert.throws(() => squareRoot(-4), /negative number/);
+});
+
+test('calculate supports modulo and power operators', () => {
+  assert.equal(calculate(5, '%', 2), 1);
+  assert.equal(calculate(2, '^', 3), 8);
+});
 
 test('addition', () => {
   assert.equal(add(2, 3), 5);
